@@ -8,4 +8,17 @@ class Person():
         print("names: {}\nlastnames: {}\nidCard: {}".format(self.names,self.lastnames,self.idCard))
 
     def saludar(self):
+        """
+        Function that allows you to greet the person
+
+        Parameters
+        ---------------------------------------
+        none:none
+
+        Return
+        ---------------------------------------
+        not return anything
+        """
         print('Hola ', self.names)
+
+    
