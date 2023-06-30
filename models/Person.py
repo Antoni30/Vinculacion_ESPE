@@ -6,3 +6,6 @@ class Person():
 
     def toString(self):
         print("names: {}\nlastnames: {}\nidCard: {}".format(self.names,self.lastnames,self.idCard))
+
+    def saludar(self):
+        print('Hola ', self.names)
