@@ -7,7 +7,7 @@ class Person():
     def toString(self):
         print("names: {}\nlastnames: {}\nidCard: {}".format(self.names,self.lastnames,self.idCard))
 
-    def saludar(self):
+    def greet(self):
         """
         Function that allows you to greet the person
 
@@ -19,6 +19,6 @@ class Person():
         ---------------------------------------
         not return anything
         """
-        print('Hola ', self.names)
+        print('Hello ', self.names)
 
     
