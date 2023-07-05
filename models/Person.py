@@ -1,5 +1,14 @@
 class Person():
     def __init__(self,names,lastnames,idCard):
+        """
+        Person Class
+
+        Parameters
+        ------------------------------
+        names: names of the users
+        lastnames: lastsnames of the users
+
+        """
         self.names=names
         self.lastnames=lastnames
         self.idCard=idCard
