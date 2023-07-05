@@ -5,7 +5,7 @@ class Person():
 
         Parameters
         ------------------------------
-        names: names of the users
+        usernames: names of the users
         lastnames: lastsnames of the users
 
         """
