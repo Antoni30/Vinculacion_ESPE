@@ -1,4 +1,4 @@
-from Person import Person 
+from models.Person import Person 
 
 class Internal(Person):
     
