@@ -1,5 +1,7 @@
-class Visit:
-    def __init__(self, place, entryTime, exitTime, visitDuration):
+from models.Person import Person 
+
+class External(Person):
+    def __init__(self, names, lastnames, ci, email, place, entryTime, exitTime, visitDuration):
         """
         Person Visit
 
@@ -11,12 +13,13 @@ class Visit:
         visit_duration: The total duration of the visit in minutes.
 
         """
+        super().__init__(names, lastnames, ci, email)
         self.place = place
         self.entryTime = entryTime
         self.exitTime = exitTime
         self.visitDuration = visitDuration
 
-    def tostring(self):
+    def gree_external(self):
         """
         Function tostring of the person visit
 
@@ -28,4 +31,5 @@ class Visit:
         --------------------------------------
         Returns a string representation of the visit.
         """
-        return f"Place: {self.place}\nEntry Time: {self.entryTime}\nExit Time: {self.exitTime}\nVisit Duration: {self.visitDuration} minutes"
+        print("place: {}\nentryTime: {}\nexitTime: {}\nvisitDuraion: {}".format(self.place,self.entryTime,self.exitTime,self.visitDuration))
+        
