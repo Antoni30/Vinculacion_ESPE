@@ -14,9 +14,6 @@ class Person():
         self.idCard=idCard
 
     def toString(self):
-        print("names: {}\nlastnames: {}\nidCard: {}".format(self.names,self.lastnames,self.idCard))
-
-    def tostring(self):
         """
         Function tostring of the person class
 
@@ -28,8 +25,8 @@ class Person():
         --------------------------------------
         Returns a string representation of the person.
         """
-        return f"names: {self.names}, lastname: {self.lastnames}, idCard: {self.idCard}"
-    
+        print("names: {}\nlastnames: {}\nidCard: {}".format(self.names,self.lastnames,self.idCard))
+
     
     def greet(self):
         """
