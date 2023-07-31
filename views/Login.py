@@ -2,11 +2,9 @@ import customtkinter
 from PIL import Image
 import os
 
-customtkinter.set_appearance_mode("dark")
-
 
 class Login(customtkinter.CTk):
-    width = 900
+    width = 1160
     height = 600
 
     def __init__(self, *args, **kwargs):
@@ -19,13 +17,13 @@ class Login(customtkinter.CTk):
         # load and create background image
         current_path = os.path.dirname(os.path.realpath(__file__))
         self.bg_image = customtkinter.CTkImage(Image.open(current_path + "/Image/bg_gradient.jpg"),
-                                               size=(self.width, self.height))
-        self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image)
-        self.bg_image_label.grid(row=0, column=1)
+                                               size=(900, 600))
+        self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image, text="")
+        self.bg_image_label.grid(row=0, column=0)
 
         # create login frame
         self.login_frame = customtkinter.CTkFrame(self, corner_radius=0)
-        self.login_frame.grid(row=0, column=0, sticky="ns")
+        self.login_frame.grid(row=0, column=1, sticky="ns")
         self.login_label = customtkinter.CTkLabel(self.login_frame, text="CustomTkinter\nLogin Page",
                                                   font=customtkinter.CTkFont(size=20, weight="bold"))
         self.login_label.grid(row=0, column=0, padx=30, pady=(150, 15))
@@ -33,7 +31,7 @@ class Login(customtkinter.CTk):
         self.username_entry.grid(row=1, column=0, padx=30, pady=(15, 15))
         self.password_entry = customtkinter.CTkEntry(self.login_frame, width=200, show="*", placeholder_text="password")
         self.password_entry.grid(row=2, column=0, padx=30, pady=(0, 15))
-        self.login_button = customtkinter.CTkButton(self.login_frame, text="Login", command=self.login_event, width=200)
+        self.login_button = customtkinter.CTkButton(self.login_frame, text="Ingresar", command=self.login_event, width=200)
         self.login_button.grid(row=3, column=0, padx=30, pady=(15, 15))
 
         # create main frame
@@ -46,13 +44,14 @@ class Login(customtkinter.CTk):
         self.back_button.grid(row=1, column=0, padx=30, pady=(15, 15))
 
     def login_event(self):
-        print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())
+        if self.username_entry.get()=='admin' and  self.password_entry.get() == 'admin123':
+            print("Login pressed - username:", self.username_entry.get(), "password:", self.password_entry.get())
 
-        self.login_frame.grid_forget()  # remove login frame
-        self.bg_image_label.grid_forget() #remove label img
-        self.main_frame.grid(row=0, column=0, sticky="nsew", padx=100)  # show main frame
+            self.login_frame.grid_forget()  # remove login frame
+            self.bg_image_label.grid_forget() #remove label img
+            self.main_frame.grid(row=0, column=0, sticky="nsew", padx=100)  # show main frame
 
     def back_event(self):
         self.main_frame.grid_forget()  # remove main frame
-        self.login_frame.grid(row=0, column=0, sticky="ns")  # show login frame
-        self.bg_image_label.grid(row=0,column=1) #show label img
+        self.login_frame.grid(row=0, column=1, sticky="ns")  # show login frame
+        self.bg_image_label.grid(row=0,column=0) #show label img
