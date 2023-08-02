@@ -1,4 +1,6 @@
-from views.UserViwer import UserViwer
+from views.Login import Login
 
 if __name__ == "__main__":
-    UserViwer()
+    
+    login = Login()
+    login.mainloop()

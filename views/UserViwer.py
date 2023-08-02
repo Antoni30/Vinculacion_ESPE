@@ -1,10 +1,16 @@
-from tkinter import *
-from tkinter import ttk
+import customtkinter as ctk
 
-def UserViwer():
-    root = Tk()
-    frm = ttk.Frame(root, padding=10)
-    frm.grid()
-    ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-    ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-    root.mainloop()
+ctk.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
+
+class UserViwer (ctk.CTk):
+    def __intit__(self):
+        super().__init__()
+
+        # configure window
+        self.title("CustomTkinter complex_example.py")
+        self.geometry(f"{1100}x{580}")
+
+        
+    
