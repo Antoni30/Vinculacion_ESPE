@@ -20,7 +20,7 @@ class Login(customtkinter.CTk):
                                                size=(900, 600))
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image, text="")
         self.bg_image_label.grid(row=0, column=0)
-
+        
         # create login frame
         self.login_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.login_frame.grid(row=0, column=1, sticky="ns")
