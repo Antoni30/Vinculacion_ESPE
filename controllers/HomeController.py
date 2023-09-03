@@ -26,7 +26,6 @@ class HomeController(Controller):
             self.homeView.close()
             c = Core.openController("formExternal")
             c.main()
-            print("Entre")
        else:
            messagebox.showerror("Usuario No Encontrado", "Contraseña o Usuario son incorrectos")
 

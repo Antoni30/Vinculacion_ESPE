@@ -18,41 +18,20 @@ class FormExternalView(customtkinter.CTk,View):
         super().__init__()
         #controlador
         self.controller = controller
-
         self.title("ACCESO ESPE")
         self.geometry(f"{self.width}x{self.height}+100+70")
-
         self.resizable(False, False)
-        # Obtener el identificador de la ventana principal de tu aplicación (ajusta esto)
-        hwnd = win32gui.FindWindow(None,self.title())  # O usa win32gui.FindWindow(None, "Nombre de tu ventana")
-        # Establecer la ventana en la parte superior de todas las ventanas
+        #Set the window at the top of all windows.
+        hwnd = win32gui.FindWindow(None,self.title())  
         win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
-        
          # set grid layout 1x2
         self.grid_rowconfigure(7, weight=1)
         self.grid_columnconfigure(2, weight=1)
-       
         #create header grid
-        
         self.header_form = customtkinter.CTkFrame(self, corner_radius=0,fg_color="#F3F3F3",height=self.header)
         self.header_form.grid(row=0, column=2,sticky="nsew")
-    
         # create navigation frame
-        self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0,fg_color="#474646")
-        self.navigation_frame.grid(row=1,rowspan=7, column=0, sticky="nsew")
-        self.navigation_frame.grid_rowconfigure(7, weight=1)
-
-       #create navigation
-        self.register_form_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40,width=60, border_spacing=10, text="Registrar usuario",
-                                                   fg_color="transparent", text_color=("#FFFFFF"), command=self.register_form_button_event,
-                                                   anchor="w", hover_color="#1E9A5D")
-        self.register_form_button.grid(row=1, column=0, sticky="ew")
-
-        self.show_list_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40,width=60, border_spacing=10, text="Listado de usuarios",
-                                                      fg_color="transparent", text_color=("#FFFFFF"),command=self.show_list_button_event,
-                                                      anchor="w", hover_color="#1E9A5D")
-        self.show_list_button.grid(row=2, column=0, sticky="ew")
-
+        self._make_navigation()
         #create external visit form
         self.form_frame = customtkinter.CTkFrame(self, corner_radius=0,fg_color="transparent")
         self.form_frame.grid_columnconfigure(1, weight=1)
@@ -92,8 +71,19 @@ class FormExternalView(customtkinter.CTk,View):
         self.select_frame_by_name("Listado de usuarios")
         #header list user
 
+    def _make_navigation(self):
+        self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0,fg_color="#474646")
+        self.navigation_frame.grid(row=1,rowspan=7, column=0, sticky="nsew")
+        self.navigation_frame.grid_rowconfigure(7, weight=1)
+
+        self.register_form_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40,width=60, border_spacing=10, text="Registrar usuario",fg_color="transparent", text_color=("#FFFFFF"), command=self.register_form_button_event,anchor="w", hover_color="#1E9A5D")
+        self.register_form_button.grid(row=1, column=0, sticky="ew")
         
-        
+        self.show_list_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40,width=60, border_spacing=10, text="Listado de usuarios",fg_color="transparent", text_color=("#FFFFFF"),command=self.show_list_button_event,anchor="w", hover_color="#1E9A5D")
+        self.show_list_button.grid(row=2, column=0, sticky="ew")
+
+    
+    
     def select_frame_by_name(self, name):
     # set button color for selected button
         self.register_form_button.configure(fg_color="#1E9A5D" if name == "Registrar usuario" else "transparent")
@@ -135,17 +125,8 @@ class FormExternalView(customtkinter.CTk,View):
         return True
     
     def destroy_win(self):
-        #self.main.atualizar_view()
-        #self.main.deiconify()
         self.destroy()
-    """  
-   def create_user(self):
-        add_new_user = Controller()
-        if self.verify_entry():
-            add_new_user.add_user(self.name_entry.get(), self.lastname_entry.get(), self.place_entry.get(), self.exit_time_entry.get())
-            self.destroy_win()
-    """
-    
+
     """
     @Overrite
     """

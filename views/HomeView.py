@@ -36,16 +36,14 @@ class HomeView(customtkinter.CTk):
         Creates view's frame.
     """
     def _backgroud(self):
-        self.bg_image = customtkinter.CTkImage(Image.open(self.current_path + "/Image/bg.jpg"),
-                                               size=(900, 600))
+        self.bg_image = customtkinter.CTkImage(Image.open(self.current_path + "/Image/bg.jpg"),size=(900, 600))
         self.bg_image_label = customtkinter.CTkLabel(self, image=self.bg_image, text="")
         self.bg_image_label.grid(row=0, column=0)
 
     def _make_mainFrame(self):
         self.login_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.login_frame.grid(row=0, column=1, sticky="ns")
-        self.login_label = customtkinter.CTkLabel(self.login_frame, text="ESPE-Registro\nLogin",
-                                                  font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.login_label = customtkinter.CTkLabel(self.login_frame, text="ESPE-Registro\nLogin",font=customtkinter.CTkFont(size=20, weight="bold"))
         
         self.login_label.grid(row=0, column=0, padx=30, pady=(150, 15))
         self.username_entry = customtkinter.CTkEntry(self.login_frame, width=200, placeholder_text="username")
