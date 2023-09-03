@@ -1,29 +1,32 @@
-
-from AdviceBox import MessageBox  
-#from models.External import External
-#from controller.Controller import Controller
+from views.AdviceBox import MessageBox  
 import customtkinter
 import re
-import os
-from PIL import Image
-import tkinter as tk
+from views.View import View
+import win32gui
+import win32con
+
 from tkinter import ttk
 
 
-class Form_External(customtkinter.CTk):
+class FormExternalView(customtkinter.CTk,View):
     width = 1160
     height = 600
     header = 60
-    #self.controller = controller
+    textColor= "#000000"
 
-    def __init__(self):
+    def __init__(self,controller):
         super().__init__()
         #controlador
-        #self.controller = controller
+        self.controller = controller
 
         self.title("ACCESO ESPE")
-        self.geometry(f"{self.width}x{self.height}")
+        self.geometry(f"{self.width}x{self.height}+100+70")
+
         self.resizable(False, False)
+        # Obtener el identificador de la ventana principal de tu aplicación (ajusta esto)
+        hwnd = win32gui.FindWindow(None,self.title())  # O usa win32gui.FindWindow(None, "Nombre de tu ventana")
+        # Establecer la ventana en la parte superior de todas las ventanas
+        win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
         
          # set grid layout 1x2
         self.grid_rowconfigure(7, weight=1)
@@ -54,31 +57,24 @@ class Form_External(customtkinter.CTk):
         self.form_frame = customtkinter.CTkFrame(self, corner_radius=0,fg_color="transparent")
         self.form_frame.grid_columnconfigure(1, weight=1)
         #self.form_frame.grid(column=1, sticky="nsew",padx=40)
-        self.name_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Nombres",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.name_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Nombres",fg_color="#E7FDF2" ,text_color=self.textColor,corner_radius=20)
         self.name_entry.grid(row=2, column=0, padx=40, pady=(15, 15),sticky="ew")
-        self.id_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Cedula",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.id_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Cedula",fg_color="#E7FDF2" ,text_color=self.textColor,corner_radius=20)
         self.id_entry.grid(row=3, column=0, padx=40, pady=(15, 15),sticky="ew")
-        self.email_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Correo electronico",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.email_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Correo electronico",fg_color="#E7FDF2",text_color=self.textColor,corner_radius=20)
         self.email_entry.grid(row=4, column=0, padx=40, pady=(15, 15),sticky="ew")
-        self.place_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Lugar de destino",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.place_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Lugar de destino",fg_color="#E7FDF2",text_color=self.textColor,corner_radius=20)
         self.place_entry.grid(row=5, column=0, padx=40, pady=(15, 15),sticky="ew")
         self.lastname_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Apellidos",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        text_color=self.textColor,corner_radius=20)
         self.lastname_entry.grid(row=2, column=1, padx=40, pady=(15, 15),sticky="ew")
-        self.phone_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Numero de celular",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.phone_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Numero de celular",fg_color="#E7FDF2",text_color=self.textColor,corner_radius=20)
         self.phone_entry.grid(row=3, column=1, padx=40, pady=(15, 15),sticky="ew")
-        self.exit_time_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Hora de salida",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.exit_time_entry = customtkinter.CTkEntry(self.form_frame, width=300, placeholder_text="Hora de salida",fg_color="#E7FDF2",text_color=self.textColor,corner_radius=20)
         self.exit_time_entry.grid(row=4, column=1, padx=40, pady=(15, 15),sticky="ew")
-        self.person_addressed_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Persona a la que se dirige",fg_color="#E7FDF2",
-                                                corner_radius=20)
+        self.person_addressed_entry = customtkinter.CTkEntry(self.form_frame, width=300, show="*", placeholder_text="Persona a la que se dirige",fg_color="#E7FDF2",text_color=self.textColor,corner_radius=20)
         self.person_addressed_entry.grid(row=5, column=1, padx=40, pady=(15, 15),sticky="ew")
-        self.obsevation_entry = customtkinter.CTkEntry(self.form_frame,fg_color="#E7FDF2" ,height=100,width=500,placeholder_text="Observaciones",corner_radius=10)
+        self.obsevation_entry = customtkinter.CTkEntry(self.form_frame,fg_color="#E7FDF2" ,text_color=self.textColor,height=100,width=500,placeholder_text="Observaciones",corner_radius=10)
         self.obsevation_entry.grid(row=6, column=0,columnspan=1,sticky="ew",padx=20 )
         self.register_button = customtkinter.CTkButton(self.form_frame, text="Registrar",  width=200, fg_color="#1E9A5D")
         self.register_button.grid(row=7, column=0,columnspan=1, padx=80, pady=(15, 15),sticky="ew")
@@ -95,6 +91,7 @@ class Form_External(customtkinter.CTk):
         # select default frame
         self.select_frame_by_name("Listado de usuarios")
         #header list user
+
         
         
     def select_frame_by_name(self, name):
@@ -147,11 +144,15 @@ class Form_External(customtkinter.CTk):
         if self.verify_entry():
             add_new_user.add_user(self.name_entry.get(), self.lastname_entry.get(), self.place_entry.get(), self.exit_time_entry.get())
             self.destroy_win()
-"""
-
-            
-
-       
-if __name__ == "__main__":
-    app = Form_External()
-    app.mainloop() 
+    """
+    
+    """
+    @Overrite
+    """
+    def main(self):
+        self.mainloop()
+    """
+    @Overrite
+    """
+    def close(self):
+        return
